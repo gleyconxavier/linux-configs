@@ -1,2 +1,2 @@
-# vimrc
-My wierd but working vim config
+# vimrc & conkyrc
+My wierd but working vim and conky config.
