@@ -1,0 +1,39 @@
+{
+  "workbench.colorTheme": "Omni",
+  "workbench.iconTheme": "material-icon-theme",
+
+  // Configura tamanho e família da fonte
+
+  "editor.fontSize":16,
+  "editor.lineHeight":24,
+  "editor.fontFamily":"Fira Code",
+  "editor.fontLigatures":true,
+
+  // Aplica um sinal visual na esquerda da linha selecionada
+  "editor.renderLineHighlight":"gutter",
+
+  // Aumenta a fonte do terminal
+  "terminal.integrated.fontSize":14,
+
+  // Compacta folders únicos dentro da pasta pai
+  "explorer.compactFolders":false,
+
+  // Visualizar pasta onde o arquivo aberto está
+  "workbench.editor.labelFormat":"short",
+
+  // Ignora recomendações de extensão
+  "extensions.ignoreRecommendations":true,
+
+  // Mostra árvore de pastas
+  "breadcrumbs.enabled": true,
+
+  // Define as regras de caractere máximo por linha
+  "editor.rulers":[80, 120],
+
+  // Evita que o editor adicione cores em variáveis
+  // de acordo com seu tipo, permanecendo as padrões
+  "editor.semanticHighlighting.enabled": false,
+
+  // Utilizar Zsh como terminal
+  "terminal.integrated.shell.osx": "/bin/zsh",
+}
