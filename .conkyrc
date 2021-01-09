@@ -1,105 +1,74 @@
-# Create own window instead of using  desktop
-own_window = true
-own_window_type = override
-own_window_hints = below
-background = true
-own_window_argb_visual = true
+maximum_size = 90
+conky.config = {
+    own_window = true,
+    own_window_type = 'desktop',
+    own_window_hints = below,
+    background = true,
+    own_window_argb_visual = true,
+    double_buffer = true,
+    use_spacer = none,
+    use_xft = true,
+    update_interval = 3.0,
+    maximum_width = 320,
+    draw_shades = true,
+    draw_borders = false,
+    font = 'ubuntu Mono:size=12',
+    stippled_borders = 3,
+    border_width = 6,
+    default_color = 'FFFFCC',
+    own_window_transparent = true,
+    alignment = 'top_right',
+    gap_x = 10,
+    gap_y = 30,
+}
 
-# Use double buffering
-double_buffer = true
+conky.text = [[
+    $color
+    ${color CC9900}SYSTEM ${hr 2}$color
+    $nodename $sysname $kernel on $machine
 
-# fiddle with window
-use_spacer none
-use_xft yes
+    ${color CC9900}CPU ${hr 2}$color
+    APU: Ryzen 5 3400G
 
-# Update interval in seconds
-update_interval 3.0
+    Total CPU: ${cpu cpu0}%
+    ${color 597DB2}${cpubar}$color
+    ${cpugraph 000000 597DB2}
+    Core 1: ${freq 1} MHz
+    ${cpu cpu1}% ${color 597DB2}${cpubar cpu1}$color
+    Core 2: ${freq 2} MHz
+    ${cpu cpu2}% ${color 597DB2}${cpubar cpu2}$color
+    Core 3: ${freq 2} MHz
+    ${cpu cpu3}% ${color 597DB2}${cpubar cpu3}$color
+    Core 4: ${freq 2} MHz
+    ${cpu cpu4}% ${color 597DB2}${cpubar cpu4}$color
+    Temperature: $color ${exec sensors 'k10temp-pci-00c3' | grep 'temp1' | cut -c 16,17}°C
 
-#Maximum Width of Window
-maximum_width 320
+    NAME            PID	 CPU%  	MEM%
+    ${color CCFFFF}${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}
+    ${top name 2} ${top pid 2} ${top cpu 2} ${top mem 2}
+    ${top name 3} ${top pid 3} ${top cpu 3} ${top mem 3}
+    ${top name 4} ${top pid 4} ${top cpu 4} ${top mem 4}$color
 
-# Minimum size of text area
-# minimum_size 250 5
+    ${color CC9900}MEMORY ${hr 2}$color
+    ${color c7c7c7}$stippled_hr
+    RAM Used: ${mem}	RAM Free: ${memeasyfree}/ ${memmax}
+    RAM: $memperc%  ${color FF6600} ${membar 6}$color
+    Swap: $swapperc%   ${color FF6600} ${swapbar 6}$color
 
-# Draw shades?
-draw_shades yes
+    ${color CC9900}DISK ${hr 2}$color
+    sdc5 ${fs_type} (Root): ${fs_free_perc /}% ${color FFFF33} ${fs_bar 6 /}$color
 
-# Text stuff
-draw_outline no # amplifies text if yes
-draw_borders no
-xftfont monofonto:size=8
-uppercase no # set to yes if you want all text to be in uppercase
+    ${color CC9900}Wifi (${addr wlx002719f23d75}) ${hr 2}$color
+    Down: $color${downspeed wlx002719f23d75} k/s ${alignr}Up: ${upspeed wlx002719f23d75} k/s
 
-# Stippled borders?
-stippled_borders 3
+    ${color CC9900}Lan (${addr enp5s0}) ${hr 2}$color
+    Down: $color${downspeed enp5s0} k/s ${alignr}Up: ${upspeed enp5s0} k/s
+    ${downspeedgraph enp5s0 25,140 000000 ff0000} ${alignr}${upspeedgraph enp5s0
+    25,140 000000 00ff00}$color
+    Total: ${totaldown enp5s0} ${alignr}Total: ${totalup enp5s0}
+    Inbound: ${tcp_portmon 1 32767 count} Outbound: ${tcp_portmon 32768
+    61000 count}${alignr}Total: ${tcp_portmon 1 65535 count}
 
-
-# border width
-border_width 6
-
-# Default colors and also border colors, grey90 == #e5e5e5
-default_color FFFFCC
-
-own_window_transparent true
-
-# Text alignment, other possible values are commented
-#alignment top_left
-alignment top_right
-#alignment bottom_left
-#alignment bottom_right
-
-# Gap between borders of screen and text
-gap_x 10
-gap_y 30
-
-# stuff after â€˜TEXTâ€™ will be formatted on screen
-
-TEXT
-$color
-${color CC9900}SYSTEM ${hr 2}$color
-$nodename $sysname $kernel on $machine
-
-${color CC9900}CPU ${hr 2}$color
-APU: Ryzen 5 3400G
-
-Total CPU: ${cpu cpu0}%
-${color 597DB2}${cpubar}$color
-${cpugraph 000000 597DB2}
-Core 1: ${freq 1} MHz
-${cpu cpu1}% ${color 597DB2}${cpubar cpu1}$color
-Core 2: ${freq 2} MHz
-${cpu cpu2}% ${color 597DB2}${cpubar cpu2}$color
-Core 3: ${freq 2} MHz
-${cpu cpu3}% ${color 597DB2}${cpubar cpu3}$color
-Core 4: ${freq 2} MHz
-${cpu cpu4}% ${color 597DB2}${cpubar cpu4}$color
-Temperature: $color ${exec sensors 'k10temp-pci-00c3' | grep 'temp1' | cut -c 16,17}°C
-
-NAME            PID	 CPU%  	MEM%
-${color CCFFFF}${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}
-${top name 2} ${top pid 2} ${top cpu 2} ${top mem 2}
-${top name 3} ${top pid 3} ${top cpu 3} ${top mem 3}
-${top name 4} ${top pid 4} ${top cpu 4} ${top mem 4}$color
-
-${color CC9900}MEMORY ${hr 2}$color
-${color c7c7c7}$stippled_hr
-RAM Used: ${mem}	RAM Free: ${memeasyfree}/ ${memmax}
- RAM: $memperc%  ${color FF6600} ${membar 6}$color
-Swap: $swapperc%   ${color FF6600} ${swapbar 6}$color
-
-${color CC9900}DISK ${hr 2}$color
-sdc5 ${fs_type} (Root): ${fs_free_perc /}% ${color FFFF33} ${fs_bar 6 /}$color
-
-${color CC9900}Wifi (${addr wlx002719f23d75}) ${hr 2}$color
-Down: $color${downspeed wlx002719f23d75} k/s ${alignr}Up: ${upspeed wlx002719f23d75} k/s
-
-${color CC9900}Lan (${addr enp5s0}) ${hr 2}$color
-Down: $color${downspeed enp5s0} k/s ${alignr}Up: ${upspeed enp5s0} k/s
-${downspeedgraph enp5s0 25,140 000000 ff0000} ${alignr}${upspeedgraph enp5s0
-25,140 000000 00ff00}$color
-Total: ${totaldown enp5s0} ${alignr}Total: ${totalup enp5s0}
-Inbound: ${tcp_portmon 1 32767 count} Outbound: ${tcp_portmon 32768
-61000 count}${alignr}Total: ${tcp_portmon 1 65535 count}
-
-${color CC9900}LOGGING ${hr 2}$color
-${color 339900}${execi 30 tail -n3 /var/log/syslog | fold -w50}$color
+    ${color CC9900}LOGGING ${hr 2}$color
+    ${color 339900}${execi 30 tail -n3 /var/log/syslog | fold -w50}$color
+]];
