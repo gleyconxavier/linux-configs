@@ -41,7 +41,7 @@ conky.text = [[
     ${cpu cpu3}% ${color 597DB2}${cpubar cpu3}$color
     Core 4: ${freq 2} MHz
     ${cpu cpu4}% ${color 597DB2}${cpubar cpu4}$color
-    Temperature: $color ${exec sensors 'k10temp-pci-00c3' | grep 'temp1' | cut -c 16,17}°C
+    Temperature: $color ${exec sensors | grep 'temp1' | cut -c 16,17}°C
 
     NAME            PID	 CPU%  	MEM%
     ${color CCFFFF}${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}
