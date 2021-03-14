@@ -15,14 +15,13 @@ sudo apt-get install python3 git -y
 o=$(python3 -c $'import os\nprint(os.get_blocking(0))\nos.set_blocking(0, True)')
 
 #Download Latest Go
-GOURLREGEX='https://dl.google.com/go/go[0-9\.]+\.linux-amd64.tar.gz'
 echo "Finding latest version of Go for AMD64..."
 latest="$(curl 'https://golang.org/VERSION?m=text')"
 url="https://dl.google.com/go/$latest.linux-amd64.tar.gz"
 echo "Downloading latest Go for AMD64: $url"
 wget --quiet --continue --show-progress $url
+unset latest
 unset url
-unset GOURLREGEX
 
 # Remove Old Go
 sudo rm -rf /usr/local/go
@@ -36,7 +35,7 @@ echo "export GOPATH=~/go" >> ~/.profile && source ~/.profile
 echo "Setting PATH to include golang binaries"
 echo "export PATH='$PATH':/usr/local/go/bin:$GOPATH/bin" >> ~/.profile && source ~/.profile
 echo "Setting GOPRIVATE to work with GOMODS"
-echo "export PATH='$PATH':/usr/local/go/bin:$GOPATH/bin" >> ~/.profile && source ~/.profile
+echo "export GOPRIVATE='bitbucket.org/eucatur,bitbucket.org/eumais,github.com/eucatur,github.com/gleyconxavier'" >> ~/.profile && source ~/.profile
 
 # Remove Download
 rm "${latest}".linux-amd64.tar.gz
