@@ -49,6 +49,7 @@ echo 'installing dbeaver'
 wget -c https://dbeaver.io/files/6.0.0/dbeaver-ce_6.0.0_amd64.deb
 sudo dpkg -i dbeaver-ce_6.0.0_amd64.deb
 sudo apt-get install -f
+rm dbeaver-ce_6.0.0_amd64.deb
 
 # Install spotify :3
 curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add - 
