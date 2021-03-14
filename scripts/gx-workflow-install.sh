@@ -5,7 +5,7 @@ sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y
 sudo apt install plank git conky conky-all lm-sensors terminator qbittorrent redis flameshot fonts-firacode curl zsh npm -y
 
 # snap apps
-sudo snap install postman -y
+sudo snap install postman
 
 echo "What name do you want to use in GIT user.name?"
 echo "For example, mine will be \"Gleycon Xavier\""
@@ -55,8 +55,12 @@ curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key 
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 sudo apt-get install spotify-client -y
 
+clear
+
 # send message that we're done
 echo "You should change theme name on ~/.zshrc to 'spaceship'"
-echo "Yay! Configuration done!"
+echo 'open ~/.zshrc
+	Set ZSH_THEME="spaceship" and save the file
+	Yay! Configuration done!'
 
 # Made by http://github.com/gleyconxavier
