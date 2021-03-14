@@ -54,11 +54,12 @@ echo "SSH intead of HTTPS: Done"
 clear
 
 echo "Generating SSH key"
-ssh-keygen
+ssh-keygen -t rsa -b 4096 -C $git_config_user_email
+ssh-add ~/.ssh/id_rsa
 echo "SSS key generated"
 
 xclip -sel clip < ~/.ssh/id_rsa.pub
-echo "Key on clipboard, now you can paste at github, bitbucket e etc..."
+echo "SSH Key is in clipboard, now you can add at github, bitbucket e etc..."
 echo "After that test the connections with: ssh -T git@github.com ssh -T git@bitbucket.org"
 
 # Made by http://github.com/gleyconxavier
