@@ -27,7 +27,7 @@ echo "export GOPATH=~/go" >> ~/.profile && source ~/.profile
 echo "Setting PATH to include golang binaries"
 echo "export PATH='$PATH':/usr/local/go/bin:$GOPATH/bin" >> ~/.profile && source ~/.profile
 echo "Setting GOPRIVATE to work with GOMODS"
-echo "export GOPRIVATE='bitbucket.org/eucatur,bitbucket.org/eumais,github.com/eucatur,github.com/gleyconxavier'" >> ~/.profile && source ~/.profile
+echo "export GOPRIVATE='bitbucket.org/eucatur,bitbucket.org/eumais,github.com/eucatur'" >> ~/.profile && source ~/.profile
 
 # Remove Download
 rm "${latest}".linux-amd64.tar.gz
