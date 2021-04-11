@@ -1,12 +1,4 @@
 # Update and get xclip
-echo "Updating OS..."
-sudo apt update && sudo apt upgrade -y
-echo "OS updated"
-
-echo "Installing xclip"
-sudo apt install xclip -y
-echo "xclip installed"
-
 # Installing latest GO
 set -euf -o pipefail
 
@@ -15,13 +7,14 @@ sudo apt-get install python3 git -y
 o=$(python3 -c $'import os\nprint(os.get_blocking(0))\nos.set_blocking(0, True)')
 
 #Download Latest Go
+GOURLREGEX='https://dl.google.com/go/go[0-9\.]+\.linux-amd64.tar.gz'
 echo "Finding latest version of Go for AMD64..."
 latest="$(curl 'https://golang.org/VERSION?m=text')"
 url="https://dl.google.com/go/$latest.linux-amd64.tar.gz"
 echo "Downloading latest Go for AMD64: $url"
 wget --quiet --continue --show-progress $url
-unset latest
 unset url
+unset GOURLREGEX
 
 # Remove Old Go
 sudo rm -rf /usr/local/go
@@ -43,7 +36,6 @@ rm "${latest}".linux-amd64.tar.gz
 # Print Go Version
 /usr/local/go/bin/go version
 python3 -c $'import os\nos.set_blocking(0, '$o')'
-clear
 
 # Configure SSH
 echo "Making go get use ssh instead of https"
